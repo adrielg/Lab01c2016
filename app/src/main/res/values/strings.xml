@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Titulo_app">Lab01c2016</string>
+    <string name="Subtitulo">Calculadora Plazo Fijo</string>
+    <string name="Email">Correo Electronico</string>
+    <string name="CUIT">CUIT</string>
+    <string name="Importe">Importe</string>
+    <string name="CantDias">Cantidad de Días</string>
+    <string name="Confirmacion_Operacion">Esperando una operación.</string>
+    <string name="Btn_HacerPF">HACER PLAZO FIJO</string>
+    <string name="CheckBox">Renovar Automaticamente al Vencimiento</string>
+    <string name="Rendimiento">Rendimiento</string>
+    <string name="Dias">Dias</string>
+    <string name="Resultado">Resultado</string>
+    <string name="ValorResultado">0.00</string>
+</resources>
