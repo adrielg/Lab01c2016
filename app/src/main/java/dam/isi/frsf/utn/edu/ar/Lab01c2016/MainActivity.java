@@ -8,11 +8,13 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity {
-    private EditText importe, dias;
-    private TextView resultado;
+    private EditText importe;
+    private TextView resultado, dias;
     private Button boton;
-    private SeekBar dias;
+    private SeekBar diasSeek;
+    private double diasEntero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +22,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         importe=(EditText) findViewById(R.id.editText3);
-        //dias=(t)findViewById(R.id.seekBar);
+        diasSeek=(SeekBar) findViewById(R.id.seekBar);
+        dias=(TextView) findViewById(R.id.textView6);
         resultado=(TextView) findViewById(R.id.textView8);
         boton=(Button) findViewById(R.id.button);
 
+        diasSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            // private Toast toastStart = Toast.makeText(MainActivity.this, getText(R.string.start), Toast.LENGTH_SHORT);
+            //private Toast toastStop = Toast.makeText(MainActivity.this, getText(R.string.stop), Toast.LENGTH_SHORT);
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                dias.setText(progress + "");
+            }
+
+            /**
+             * El usuario inicia la interacción con la Seekbar.
+             */
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                diasEntero=Double.parseDouble(dias.getText().toString());
+            }
+        });
         //Mensaje Inicial
         TextView confirma = (TextView) findViewById(R.id.textView10);
         confirma.setText(getText(R.string.Confirmacion_Operacion));
@@ -31,13 +56,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void calcular(View v) {
         double importeEntero = Double.parseDouble(importe.getText().toString());
-        // double diasEntero= Double.parseDouble(dias.getText().toString());
 
-        //obtener los dias del SeekBar
-        intereses(importeEntero, 20);
+        intereses(importeEntero, diasEntero);
     }
 
-    //Como manejo los intereses con xml ???
     private void intereses(double importe, double dias) {
         double resulta = 0;
         int ok = 0;
@@ -70,7 +92,9 @@ public class MainActivity extends AppCompatActivity {
         String resul = String.valueOf(resulta);
         resultado.setText(resul);
 
-        if (ok == 0){
+        EditText email = (EditText) findViewById(R.id.editText);
+        EditText cuit = (EditText) findViewById(R.id.editText2);
+        if (ok == 0 || email.getText().equals(null) || cuit.getText().equals(null)){
             //Mensaje de Error
             TextView confirma = (TextView) findViewById(R.id.textView10);
             confirma.setText("Plazo fijo NO realizado.");
@@ -78,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (ok == 1) {
             //Mensaje de Exito
+
             TextView confirma = (TextView) findViewById(R.id.textView10);
             confirma.setText("Plazo fijo realizado. Recibirá " + Double.parseDouble(String.valueOf(resul)) + " al vencimiento!");
             confirma.setTextColor(confirma.getContext().getResources().getColor(R.color.colorMensajeCorrecto));
