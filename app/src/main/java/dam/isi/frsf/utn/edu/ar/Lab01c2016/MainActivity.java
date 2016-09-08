@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
             confirma.setText("Plazo fijo NO realizado.");
             confirma.setTextColor(confirma.getContext().getResources().getColor(R.color.colorMensajeError));
         }
-        if (ok == 1) {
+        if (ok == 1) {//
             //Mensaje de Exito
 
             TextView confirma = (TextView) findViewById(R.id.textView10);
