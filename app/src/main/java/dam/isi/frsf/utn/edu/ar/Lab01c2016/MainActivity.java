@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private SeekBar diasSeek;
     private double diasEntero;
     //----------------------------------------------------//
-
+    //----------------------------------------------------//
     @Override
 
     /**-----------------------------------------ON CREATE----------------------------------------**/
