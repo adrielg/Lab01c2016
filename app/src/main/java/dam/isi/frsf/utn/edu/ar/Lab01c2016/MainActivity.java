@@ -10,22 +10,32 @@ import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    //---------------Declaración de Variables-------------//
     private EditText importe;
     private TextView resultado, dias;
     private Button boton;
     private SeekBar diasSeek;
     private double diasEntero;
+    //----------------------------------------------------//
 
     @Override
+
+    /**-----------------------------------------ON CREATE----------------------------------------**/
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        //Punto 4.a) Asociación con el archivo de layout que define la vista de la actividad //
         setContentView(R.layout.activity_main);
 
+        //------------Definición de Variables------------//
         importe=(EditText) findViewById(R.id.editText3);
         diasSeek=(SeekBar) findViewById(R.id.seekBar);
         dias=(TextView) findViewById(R.id.textView6);
         resultado=(TextView) findViewById(R.id.textView8);
         boton=(Button) findViewById(R.id.button);
+        //-----------------------------------------------//
 
         diasSeek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             // private Toast toastStart = Toast.makeText(MainActivity.this, getText(R.string.start), Toast.LENGTH_SHORT);
@@ -49,10 +59,13 @@ public class MainActivity extends AppCompatActivity {
                 diasEntero=Double.parseDouble(dias.getText().toString());
             }
         });
+
         //Mensaje Inicial
         TextView confirma = (TextView) findViewById(R.id.textView10);
         confirma.setText(getText(R.string.Confirmacion_Operacion));
     }
+    /**-------------------------------------fin ON CREATE----------------------------------------**/
+
 
     public void calcular(View v) {
         double importeEntero = Double.parseDouble(importe.getText().toString());
@@ -94,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         EditText email = (EditText) findViewById(R.id.editText);
         EditText cuit = (EditText) findViewById(R.id.editText2);
+
         if (ok == 0 || email.getText().equals(null) || cuit.getText().equals(null)){
             //Mensaje de Error
             TextView confirma = (TextView) findViewById(R.id.textView10);
